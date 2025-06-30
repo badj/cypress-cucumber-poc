@@ -12,7 +12,7 @@ This repository demonstrates:
 - **Cucumber BDD**: Implements Behavior-Driven Development for structured, readable test scenarios.
 - **Mochawesome Reporter**: Generates detailed test result reports.
 - **Local Execution**: Run tests locally with multiple browser options.
-- **CI/CD Integration**: Executes tests in a [Docker container](https://www.docker.com/) via [GitHub Actions](https://github.com/badj/Cypress-poc/actions), triggered on push/pull requests to the main branch and daily scheduled runs.
+- **CI/CD Integration**: Executes tests in a [Docker container](https://www.docker.com/) via [GitHub Actions](https://github.com/badj/cypress-cucumber-poc/actions), triggered on push/pull requests to the main branch and daily scheduled runs.
 
 ---
 

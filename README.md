@@ -45,7 +45,6 @@ Ensure the following are installed:
 2. [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/) (included with Node.js).
 
 ---
-
 ### Setup
 
 1. Clone or Download:

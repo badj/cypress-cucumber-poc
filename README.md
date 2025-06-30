@@ -1,0 +1,144 @@
+# Cypress Cucumber POC
+
+> A proof of concept showcasing the implementation of [Cypress](https://www.cypress.io/) as a test framework with [Cucumber BDD](https://cucumber.io/) and [Mochawesome reporter](https://www.npmjs.com/package/cypress-mochawesome-reporter) integration for testing the checkout flow for the ["Test Automation - Big Cartel E-commerce Test Store"](https://testautomation.bigcartel.com/).
+
+---
+
+### Overview
+
+This repository demonstrates:
+
+- **Cypress Testing Framework**: Utilizes [Cypress Studio](https://docs.cypress.io/app/guides/cypress-studio) for test recording.
+- **Cucumber BDD**: Implements Behavior-Driven Development for structured, readable test scenarios.
+- **Mochawesome Reporter**: Generates detailed test result reports.
+- **Local Execution**: Run tests locally with multiple browser options.
+- **CI/CD Integration**: Executes tests in a [Docker container](https://www.docker.com/) via [GitHub Actions](https://github.com/badj/Cypress-poc/actions), triggered on push/pull requests to the main branch and daily scheduled runs.
+
+---
+
+### Test Scenarios
+
+The project includes Cypress feature tests covering the following e-commerce checkout journeys:
+
+- Contact page: Successful submission verifying message objects.
+- Search for an item in the store.
+- View a product from search results.
+- Select color and age options from dropdowns.
+- Increase item quantity.
+- Proceed to the cart.
+- Verify cart details, including:
+  - Correct items.
+  - Selected options.
+  - Quantities.
+  - Item prices and cart totals.
+
+---
+
+### Prerequisites
+
+Ensure the following are installed:
+
+1. [Node.js](https://nodejs.org/en/download/) (LTS version recommended).
+2. [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/) (included with Node.js).
+
+---
+
+### Setup
+
+1. Clone or Download:
+   - Clone this repository: `git clone https://github.com/badj/Cypress-poc.git`
+   - Alternatively, download the ZIP file and extract it.
+2. Navigate to Project Directory:
+   ```bash
+   cd Cypress-poc
+   ```
+3. Install Dependencies:
+   ```bash
+   npm install
+   ```
+
+---
+
+### Running Tests
+
+1. With the Cypress Test Runner:
+
+- For an interactive GUI to select and run specific tests.
+  ```bash
+  npx cypress open
+  ```
+2. Headless Mode:
+- Run tests without opening a browser window *(Default Electron Browser)*
+  ```bash
+  npx cypress run
+  ```
+3. Headed Mode - No exit  - Alternative Browsers:
+- Run tests with the browser open and browser remain open when run completed (Electron/Chrome/Firefox/Edge)
+  ```bash
+  npx cypress run --headed --browser electron --no-exit
+  ```
+  ```bash
+  npx cypress run --headed --browser chrome --no-exit
+  ```
+  ```bash
+  npx cypress run --headed --browser firefox --no-exit
+  ```
+  ```bash
+  npx cypress run --headed --browser edge --no-exit
+  ```
+4. Headless Mode - Alternative Browsers:
+- Run tests with no browser window opening (Electron/Chrome/Firefox/Edge)
+  ```bash
+  npx cypress run --browser electron
+  ```
+  ```bash
+  npx cypress run --browser chrome
+  ```
+  ```bash
+  npx cypress run --browser firefox
+  ```
+  ```bash
+  npx cypress run --browser edge
+  ```
+5. Headed Mode - Alternative Browsers:
+- Run tests with the browser open and closing the browser when run completed
+  ```bash
+  npx cypress run --headed
+  ```
+  ```bash
+  npx cypress run --headed --browser chrome
+  ```
+  ```bash
+  npx cypress run --headed --browser firefox
+  ```
+  ```bash
+  npx cypress run --headed --browser edge
+  ```
+
+---
+
+### Viewing Test Results
+
+After the test run completes:
+
+- **HTML Report:** Generated at [cypress/reports/html](cypress/reports/result.html/index.html).
+- **Video Recordings:** Available at [cypress/reports/result.html/videos](cypress/reports/result.html/videos/).
+- **Screenshots:**
+  - Saved at [cypress/reports/screenshots/testautomation.feature/](cypress/reports/screenshots/testautomation.feature/) for failed tests.
+  - Saved at [cypress/screenshots/](cypress/screenshots/) for test steps configured to capture screenshots.
+
+---
+
+### CI/CD Pipeline
+
+- Tests are executed in a Docker container using GitHub Actions. 
+- Triggers on push/pull requests to the main branch and for daily scheduled runs. See the workflow configuration in [.github/workflows/main.yml](.github/workflows/main.yml).
+
+---
+
+### Additional Notes
+
+- Ensure all prerequisites are met before running tests.
+- For issues or contributions, refer to the GitHub repository.
+
+---

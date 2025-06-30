@@ -145,7 +145,10 @@ After the test run completes:
 
 ### Unresolved issues - Work in Progress
 
-**1. Firefox runner fails to capture video recording**
+**1. Test scenario: Contact page: Successful submission verifying message objects.**
+- **STATUS:** Implementation in progress
+
+**2. Firefox runner fails to capture video recording**
 - **STATUS:** Investigating
 - **AFFECTED ENVIRONMENTS:** Firefox only!
 - **SEVERITY:** Medium
@@ -161,9 +164,6 @@ at ChildProcess.<anonymous> (<embedded>:1012:16262)
 at ChildProcess.emit (node:events:518:28)
 at ChildProcess._handle.onexit (node:internal/child_process:293:12)
 ```
-
-**2. Test scenario: Contact page: Successful submission verifying message objects.**
-- **STATUS:** Work / implementation in progress
 
 ---
 

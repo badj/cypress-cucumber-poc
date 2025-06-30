@@ -4,6 +4,9 @@
 
 ---
 
+[![Cypress Tests in Docker](https://github.com/badj/cypress-cucumber-poc/actions/workflows/main.yml/badge.svg)](https://github.com/badj/cypress-cucumber-poc/actions/workflows/main.yml)
+
+---
 ### Overview
 
 This repository demonstrates:

@@ -142,3 +142,24 @@ After the test run completes:
 - For issues or contributions, refer to the GitHub repository.
 
 ---
+
+### Unresolved issues - Work in Progress
+
+**1. Firefox runner fails to capture video recording**
+- **STATUS:** Investigating
+- **AFFECTED ENVIRONMENTS:** Firefox only!
+- **SEVERITY:** Medium
+- **EXTENDED DETAILS:** 
+  - Test run succeeds but unable to generate / process the video recording(s). 
+  - Video from the test run not embedded in the test results report due to no video available/captured during the test run.
+  - Following error printed in console at the end of the test run, during video recording processing: 
+```
+Warning: We failed capturing this video.
+This error will not affect or change the exit code.
+Error: Insufficient frames captured to create video.
+at ChildProcess.<anonymous> (<embedded>:1012:16262)
+at ChildProcess.emit (node:events:518:28)
+at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+```
+---
+ 

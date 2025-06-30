@@ -1,0 +1,37 @@
+name: Cypress Tests in Docker
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '30 19 * * *'  # 7:30 am NZT (UTC+12)  
+    
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Cypress Tests in Docker
+        run: | 
+         docker run --rm \
+          -v ${{ github.workspace }}:/e2e \
+          -w /e2e \
+          -e CYPRESS_baseUrl=https://testautomation.bigcartel.com \
+          --entrypoint /bin/sh \
+          cypress/included:13.3.2 \
+          -c "npm install && npx cypress run"
+
+      - name: Upload Cypress test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-results
+          path: |
+            cypress/reports/result.html
+            cypress/videos
+            cypress/screenshots

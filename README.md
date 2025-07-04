@@ -147,10 +147,7 @@ After the test run completes:
 
 ### Unresolved issues - Work in Progress
 
-**1. Test scenario: Contact page: Successful submission verifying message objects.**
-- **STATUS:** Implementation in progress
-
-**2. Firefox runner fails to capture video recording**
+**1. Firefox runner fails to capture video recording**
 - **STATUS:** Investigating
 - **AFFECTED ENVIRONMENTS:** Firefox only!
 - **SEVERITY:** Medium

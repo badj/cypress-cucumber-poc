@@ -48,11 +48,11 @@ Ensure the following are installed:
 ### Setup
 
 1. Clone or Download:
-   - Clone this repository: `git clone https://github.com/badj/Cypress-poc.git`
+   - Clone this repository: `git clone https://github.com/badj/cypress-cucumber-poc.git`
    - Alternatively, download the ZIP file and extract it.
 2. Navigate to Project Directory:
    ```bash
-   cd Cypress-poc
+   cd cypress-cucumber-poc
    ```
 3. Install Dependencies:
    ```bash

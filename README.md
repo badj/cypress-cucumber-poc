@@ -74,8 +74,8 @@ Ensure the following are installed:
   ```bash
   npx cypress run
   ```
-3. Headed Mode - No exit  - Alternative Browsers:
-- Run tests with the browser open and browser remain open when run completed (Electron/Chrome/Firefox/Edge)
+3. Headed Mode - No exit  - Alternative Browsers: (Electron/Chrome/Firefox/Edge/Webkit)
+- Run tests with the browser open and browser remain open when run completed 
   ```bash
   npx cypress run --headed --browser electron --no-exit
   ```
@@ -88,8 +88,11 @@ Ensure the following are installed:
   ```bash
   npx cypress run --headed --browser edge --no-exit
   ```
-4. Headless Mode - Alternative Browsers:
-- Run tests with no browser window opening (Electron/Chrome/Firefox/Edge)
+  ```bash
+  npx cypress run --headed --browser webkit --no-exit
+  ```
+4. Headless Mode - Alternative Browsers: (Electron/Chrome/Firefox/Edge/Webkit)
+- Run tests with no browser window opening
   ```bash
   npx cypress run --browser electron
   ```
@@ -102,7 +105,10 @@ Ensure the following are installed:
   ```bash
   npx cypress run --browser edge
   ```
-5. Headed Mode - Alternative Browsers:
+  ```bash
+  npx cypress run --browser webkit
+  ```  
+5. Headed Mode - Alternative Browsers: (Electron/Chrome/Firefox/Edge/Webkit)
 - Run tests with the browser open and closing the browser when run completed
   ```bash
   npx cypress run --headed
@@ -116,24 +122,34 @@ Ensure the following are installed:
   ```bash
   npx cypress run --headed --browser edge
   ```
-
+  ```bash
+  npx cypress run --headed --browser webkit
+  ```
 ---
 
 ### Viewing Test Results
 
 After the test run completes:
 
-- **HTML Report:** Generated at [cypress/reports/html](cypress/reports/result.html/index.html).
-- **Video Recordings:** Available at [cypress/reports/result.html/videos](cypress/reports/result.html/videos/).
-- **Screenshots:**
-  - Saved at [cypress/reports/screenshots/testautomation.feature/](cypress/reports/screenshots/testautomation.feature/) for failed tests.
-  - Saved at [cypress/screenshots/](cypress/screenshots/) for test steps configured to capture screenshots.
+- **HTML Report:** Generated at [cypress/reports/html/](cypress/reports/html/) as `cypress-cucumber-poc-results.html`
+    - To open the report automatically after a headless run:
+  ```bash
+   npx cypress run --reporter-options autoOpen=true
+  ```
+    - To always open the report after a run - set autoOpen to true in the Reporter Option in [cypress.config.js](cypress.config.js):
+   ```javascript
+   reporterOptions: {
+        autoOpen: true
+     }
+   ```
+- **Video Recordings:** Available at [cypress/reports/html/videos/](cypress/reports/html/videos/) and [cypress/videos/](cypress/videos/)
+- **Screenshots:** Saved at [cypress/reports/screenshots/](cypress/reports/screenshots/) for test steps configured to capture screenshots.
 
 ---
 
 ### CI/CD Pipeline
 
-- Tests are executed in a Docker container using GitHub Actions. 
+- Tests are executed in a Docker container using GitHub Actions.
 - Triggers on push/pull requests to the main branch and for daily scheduled runs. See the workflow configuration in [.github/workflows/main.yml](.github/workflows/main.yml).
 
 ---

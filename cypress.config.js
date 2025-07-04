@@ -14,7 +14,11 @@ module.exports = defineConfig({
         reportPageTitle: 'Cypress Test Results',
         embeddedScreenshots: true,
         inlineAssets: true,
-        saveAllAttempts: true
+        saveAllAttempts: true,
+        useInlineDiffs: true,
+        reportFilename: 'cypress-cucumber-poc-results.html',
+        overwrite: true,
+        autoOpen: false //Set to true to auto open the test report when a test run completes
     },
     e2e: {
         baseUrl: "https://testautomation.bigcartel.com",
@@ -45,5 +49,3 @@ module.exports = defineConfig({
         step_definitions: 'cypress/e2e/step_definitions',
     },
 });
-
-

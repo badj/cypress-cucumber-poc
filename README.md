@@ -23,7 +23,7 @@ This repository demonstrates:
 
 The project includes Cypress feature tests covering the following e-commerce checkout journeys:
 
-- Contact page: Successful submission verifying message objects.
+- Contact page: Submit a contact enquiry ➝ triggers recaptcha.
 - Search for an item in the store.
 - View a product from search results.
 - Select color and age options from dropdowns.

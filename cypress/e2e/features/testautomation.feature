@@ -1,9 +1,15 @@
-Feature: Cypress Test POC ➝ Checkout flow
+Feature: Cypress Test POC ➝ Contact and Checkout flow
 
-#  Scenario: Contact ➝ Submit an enquiry
-#    Given todo
-#    When todo
-#    Then todo
+  Scenario Outline: Submit a contact enquiry ➝ triggers recaptcha
+    Given I am on the store homepage
+    When I navigate to the contact page
+    Then I see the contact form
+    When I fill the contact form with <Name>, <Email>, <Subject>, <Message>
+    And I submit the contact form
+    Then I see a recaptcha to complete
+    Examples:
+      | Name  | Email           | Subject                      | Message                |
+      | Obvio | obvio@obvio.biz | Test contact message subject | This is a test message |
 
   Scenario: Search for an item ➝ view the product
     Given I am on the store homepage
@@ -43,7 +49,7 @@ Feature: Cypress Test POC ➝ Checkout flow
     Given I am on the product page for "White-tabby-cat"
     And product "White-tabby-cat" with color "Colour: White" with age "Age: 4YRS" and quantity 3 is added to the cart
     When I proceed to the cart
-    Then the cart page contain product details: "Light Spotted Tabby Cat", color "Colour: White", age "Age: 4YRS", quantity 3, price '$300.00' totalling '$900.00'
+    Then the cart page should contain the product details: "Light Spotted Tabby Cat", "Colour: White", "Age: 4YRS", 3, '$300.00' with sub total '$900.00'
     When I continue to the checkout
     Then The checkout proceeds to the checkout page
 
@@ -51,7 +57,7 @@ Feature: Cypress Test POC ➝ Checkout flow
     Given I am on the product page for <Product>
     And <Product> with <color> with <age> and <quantity> is added to the cart
     When I proceed to the cart
-    Then the cart page should contain the product details: <itemName>, <color>, <age>, <quantity>, <itemPrice> totalling <subTotal>
+    Then the cart page should contain the product details: <itemName>, <color>, <age>, <quantity>, <itemPrice> with sub total <subTotal>
     And the cart page should contain page elements to continue shopping, provide the sub total and to continue the checkout
     When I continue to the checkout
     Then The checkout proceeds to the checkout page

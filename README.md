@@ -41,8 +41,8 @@ The project includes Cypress feature tests covering the following e-commerce che
 
 Ensure the following are installed:
 
-1. [Node.js](https://nodejs.org/en/download/) (LTS version recommended).
-2. [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/) (included with Node.js).
+1. [Node.js](https://nodejs.org/en/download/) (LTS version recommended)
+2. [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/) (Included with Node.js)
 
 ---
 ### Setup

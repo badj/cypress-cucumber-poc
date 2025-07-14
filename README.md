@@ -153,6 +153,58 @@ After the test run completes:
 - Triggers on push/pull requests to the main branch and for daily scheduled runs. See the workflow configuration in [.github/workflows/main.yml](.github/workflows/main.yml).
 
 ---
+### Gotcha's:
+
+**1. Installing Cypress dependencies using `npm install` failing due to an unsupported Node.js version**
+
+> Your current Node.js version is older than the recommended LTS version.
+> Cypress requires a more recent version of Node.js. As of Cypress 14.0.0, the minimum supported Node.js version is typically Node.js 18 or higher.
+
+**To resolve the issue:**
+
+1. Update Node.js using nvm (Node Version Manager) - Install Node.js 18 (LTS) or a newer version like 20
+```bash
+  nvm install 18
+```
+2. Switch to the new version
+```bash
+  nvm use 18
+```
+3. Set it as the default version
+```bash
+  nvm alias default 18
+```
+4. Verify the Node.js version - Ensure it’s at least v16 or higher.
+```bash
+  node -v
+```
+5. Verify npm version:
+```bash
+  npm -v
+```
+
+**Additional steps if steps above steps do not resolvce it:**
+
+6. Clear npm Cache and Reinstall Dependencies → The error may be caused by a corrupted npm cache or incomplete dependency installation 
+> This ensures a clean slate for dependency installation, avoiding issues from cached or corrupted files.
+```bash
+  npm cache clean --force
+```
+7. Remove the node_modules directory and package-lock.json → Navigate to the project directory 
+> Change to the cypress-cucumber-poc project directory (example for macOS)*:
+```bash
+  cd /Users/badj/Documents/Git/cypress-cucumber-poc
+```
+8. Remove the node_modules directory and package-lock.json file:
+```bash
+  rm -rf node_modules package-lock.json
+```
+9. Reinstall dependencies:
+```bash
+  npm install
+```
+
+---
 
 ### Additional Notes
 
@@ -164,14 +216,14 @@ After the test run completes:
 ### Unresolved issues - Work in Progress
 
 **1. Firefox runner fails to capture video recording**
-- **STATUS:** Investigating
-- **AFFECTED ENVIRONMENTS:** Firefox only!
-- **SEVERITY:** Medium
-- **EXTENDED DETAILS:** 
-  - Test run succeeds but unable to generate / process the video recording(s). 
-  - Video from the test run not embedded in the test results report due to no video available/captured during the test run.
+- **Status:** Investigating
+- **Affected Browsers:** Firefox
+- **Severity:** Low
+- **Impact:** Video from the test run is not embedded in the test results report due to failed video capture during the Firefox test run.
+- **Additional Details:** 
+  - Test run succeeds but unable to generate / process the video recording(s).
   - Following error printed in console at the end of the test run, during video recording processing: 
-```
+```javascript
 Warning: We failed capturing this video.
 This error will not affect or change the exit code.
 Error: Insufficient frames captured to create video.

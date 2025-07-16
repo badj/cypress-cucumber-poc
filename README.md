@@ -14,7 +14,7 @@
 - [Viewing test results](#viewing-test-results)
 - [CI/CD Pipeline](#cicd-pipeline)
 - [Additional notes](#additional-notes)
-- [Gotchas](#gotchas)
+- [Gotcha's](#gotchas)
 - [Unresolved issues - Work in progress](#unresolved-issues---work-in-progress)
 ---
 

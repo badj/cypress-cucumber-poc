@@ -10,16 +10,16 @@
 ### Table of contents
 
 
-- [Overview](https://github.com/badj/cypress-cucumber-poc#overview)
-- [Test Scenarios](https://github.com/badj/cypress-cucumber-poc#test-scenarios)
-- [Pre requisites](https://github.com/badj/cypress-cucumber-poc#prerequisites)
-- [Setup](https://github.com/badj/cypress-cucumber-poc#setup)
-- [Running tests](https://github.com/badj/cypress-cucumber-poc#running-tests)
-- [Viewing test results](https://github.com/badj/cypress-cucumber-poc#viewing-test-results)
-- [CI/CD Pipeline](https://github.com/badj/cypress-cucumber-poc#cicd-pipeline)
-- [Additional notes](https://github.com/badj/cypress-cucumber-poc#additional-notes)
-- [Gotchas](https://github.com/badj/cypress-cucumber-poc#gotchas)
-- [Unresolved issues - Work in progress](https://github.com/badj/cypress-cucumber-poc#unresolved-issues---work-in-progress)
+- [Overview](#overview)
+- [Test Scenarios](#test-scenarios)
+- [Pre requisites](#prerequisites)
+- [Setup](#setup)
+- [Running tests](#running-tests)
+- [Viewing test results](#viewing-test-results)
+- [CI/CD Pipeline](#cicd-pipeline)
+- [Additional notes](#additional-notes)
+- [Gotchas](#gotchas)
+- [Unresolved issues - Work in progress](#unresolved-issues---work-in-progress)
 ---
 
 ### Overview

@@ -176,7 +176,7 @@ After the test run completes:
 
 ---
 
-### Gotcha's:
+### Gotcha's
 
 **1. Installing Cypress dependencies using `npm install` failing due to an unsupported Node.js version**
 

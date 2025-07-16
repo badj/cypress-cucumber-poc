@@ -7,6 +7,21 @@
 [![Cypress Tests in Docker](https://github.com/badj/cypress-cucumber-poc/actions/workflows/main.yml/badge.svg)](https://github.com/badj/cypress-cucumber-poc/actions/workflows/main.yml)
 
 ---
+### Table of contents
+
+
+- [Overview](https://github.com/badj/cypress-cucumber-poc#overview)
+- [Test Scenarios](https://github.com/badj/cypress-cucumber-poc#test-scenarios)
+- [Pre requisites](https://github.com/badj/cypress-cucumber-poc#prerequisites)
+- [Setup](https://github.com/badj/cypress-cucumber-poc#setup)
+- [Running tests](https://github.com/badj/cypress-cucumber-poc#running-tests)
+- [Viewing test results](https://github.com/badj/cypress-cucumber-poc#viewing-test-results)
+- [CI/CD Pipeline](https://github.com/badj/cypress-cucumber-poc#cicd-pipeline)
+- [Additional notes](https://github.com/badj/cypress-cucumber-poc#additional-notes)
+- [Gotchas](https://github.com/badj/cypress-cucumber-poc#gotchas)
+- [Unresolved issues - Work in progress](https://github.com/badj/cypress-cucumber-poc#unresolved-issues---work-in-progress)
+---
+
 ### Overview
 
 This repository demonstrates:
@@ -153,6 +168,14 @@ After the test run completes:
 - Triggers on push/pull requests to the main branch and for daily scheduled runs. See the workflow configuration in [.github/workflows/main.yml](.github/workflows/main.yml).
 
 ---
+
+### Additional Notes
+
+- Ensure all prerequisites are met before running tests.
+- For issues or contributions, refer to the GitHub repository.
+
+---
+
 ### Gotcha's:
 
 **1. Installing Cypress dependencies using `npm install` failing due to an unsupported Node.js version**
@@ -203,13 +226,6 @@ After the test run completes:
 ```bash
   npm install
 ```
-
----
-
-### Additional Notes
-
-- Ensure all prerequisites are met before running tests.
-- For issues or contributions, refer to the GitHub repository.
 
 ---
 

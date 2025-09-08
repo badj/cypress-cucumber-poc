@@ -32,7 +32,7 @@ This repository demonstrates:
 
 ### Test Scenarios
 
-The project includes Cypress feature tests covering the following e-commerce checkout journeys:
+This project includes Cypress feature tests covering the following e-commerce checkout journeys:
 
 - Contact page: Submit a contact enquiry ➝ triggers recaptcha.
 - Search for an item in the store.

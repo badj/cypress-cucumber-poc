@@ -213,7 +213,7 @@ After the test run completes:
 7. Remove the node_modules directory and package-lock.json → Navigate to the project directory 
 > Change to the cypress-cucumber-poc project directory (example for macOS)*:
 ```bash
-  cd /Users/badj/Documents/Git/cypress-cucumber-poc
+  cd [path to your repo]/cypress-cucumber-poc
 ```
 8. Remove the node_modules directory and package-lock.json file:
 ```bash

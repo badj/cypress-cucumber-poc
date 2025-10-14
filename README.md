@@ -22,8 +22,8 @@
 
 This repository demonstrates:
 
-- **Cypress Testing Framework**: Utilizes [Cypress Studio](https://docs.cypress.io/app/guides/cypress-studio) for test recording - [follow this guide to record test steps with Cypress Studio](https://docs.cypress.io/app/guides/cypress-studio#Step-1---Run-the-spec).
-- **Cucumber BDD**: Implements Behavior-Driven Development for structured, readable test scenarios.
+- **Cypress Testing Framework**: Utilises [Cypress Studio](https://docs.cypress.io/app/guides/cypress-studio) for test recording - [follow this guide to record test steps with Cypress Studio](https://docs.cypress.io/app/guides/cypress-studio#Step-1---Run-the-spec).
+- **Cucumber BDD**: Implements Behaviour-Driven Development for structured, readable test scenarios.
 - **Mochawesome Reporter**: Generates detailed test result reports.
 - **Local Execution**: Run tests locally with multiple browser options.
 - **CI/CD Integration**: Executes tests in a [Docker container](https://www.docker.com/) via [GitHub Actions](https://github.com/badj/cypress-cucumber-poc/actions), triggered on push/pull requests to the main branch and daily scheduled runs.
@@ -37,7 +37,7 @@ This project includes Cypress feature tests covering the following e-commerce ch
 - Contact page: Submit a contact enquiry ➝ triggers recaptcha.
 - Search for an item in the store.
 - View a product from search results.
-- Select color and age options from dropdowns.
+- Select colour and age options from dropdowns.
 - Increase item quantity.
 - Proceed to the cart.
 - Verify cart details, including:
@@ -86,7 +86,7 @@ Ensure the following are installed:
   npx cypress run
   ```
 3. Headed Mode - No exit  - Alternative Browsers: (Electron/Chrome/Firefox/Edge/Webkit)
-- Run tests with the browser open and browser remain open when run completed 
+- Run tests with the browser open, and the browser remains open when the run completed 
   ```bash
   npx cypress run --headed --browser electron --no-exit
   ```
@@ -120,7 +120,7 @@ Ensure the following are installed:
   npx cypress run --browser webkit
   ```  
 5. Headed Mode - Alternative Browsers: (Electron/Chrome/Firefox/Edge/Webkit)
-- Run tests with the browser open and closing the browser when run completed
+- Run tests with the browser open and closing the browser when the run completed
   ```bash
   npx cypress run --headed
   ```
@@ -203,7 +203,7 @@ After the test run completes:
   npm -v
 ```
 
-**Additional steps if steps above steps do not resolvce it:**
+**Additional steps if the steps above do not resolve it:**
 
 6. Clear npm Cache and Reinstall Dependencies → The error may be caused by a corrupted npm cache or incomplete dependency installation 
 > This ensures a clean slate for dependency installation, avoiding issues from cached or corrupted files.
@@ -234,7 +234,7 @@ After the test run completes:
 - **Severity:** Low
 - **Impact:** Video from the test run is not embedded in the test results report due to failed video capture during the Firefox test run.
 - **Additional Details:** 
-  - Test run succeeds but unable to generate / process the video recording(s).
+  - Test run succeeds, but is unable to generate/process the video recording(s).
   - Following error printed in console at the end of the test run, during video recording processing: 
 ```javascript
 Warning: We failed capturing this video.

@@ -1,8 +1,8 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
 const productName = 'Light Spotted Tabby Cat'
-const itemPriceWithCurrency= '$300.00';
-const cartTotalPriceWithCurrency= '$900.00';
+const itemPriceWithCurrency= 'NZ$300.00';
+const cartTotalPriceWithCurrency= 'NZ$900.00';
 const addToCartRequest = '**/cart.js';
 
 Given("I am on the store homepage", () => {

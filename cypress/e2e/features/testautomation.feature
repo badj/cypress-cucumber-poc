@@ -27,7 +27,7 @@ Feature: Cypress Test POC ➝ Contact and Checkout flow
     Then the selected color should be "Colour: White"
     And the selected age should be "Age: 4YRS"
     And the quantity should be 3
-    And the cart total should be '$900.00'
+    And the cart total should be 'NZ$900.00'
     And the cart total items count should be 3
 
   Scenario Outline: Choose options on the product page ➝ add to the cart
@@ -43,13 +43,13 @@ Feature: Cypress Test POC ➝ Contact and Checkout flow
     And the cart total items count should be <quantity>
     Examples:
       | Product           | color           | age         | quantity | cartTotal |
-      | "White-tabby-cat" | "Colour: White" | "Age: 4YRS" | 3        | '$900.00' |
+      | "White-tabby-cat" | "Colour: White" | "Age: 4YRS" | 3        | 'NZ$900.00' |
 
   Scenario: Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout
     Given I am on the product page for "White-tabby-cat"
     And product "White-tabby-cat" with color "Colour: White" with age "Age: 4YRS" and quantity 3 is added to the cart
     When I proceed to the cart
-    Then the cart page should contain the product details: "Light Spotted Tabby Cat", "Colour: White", "Age: 4YRS", 3, '$300.00' with sub total '$900.00'
+    Then the cart page should contain the product details: "Light Spotted Tabby Cat", "Colour: White", "Age: 4YRS", 3, 'NZ$300.00' with sub total 'NZ$900.00'
     When I continue to the checkout
     Then The checkout proceeds to the checkout page
 
@@ -63,4 +63,4 @@ Feature: Cypress Test POC ➝ Contact and Checkout flow
     Then The checkout proceeds to the checkout page
     Examples:
       | Product           | color           | age         | quantity | itemName                  | itemPrice | subTotal  |
-      | "White-tabby-cat" | "Colour: White" | "Age: 4YRS" | 3        | "Light Spotted Tabby Cat" | '$300.00' | '$900.00' |
+      | "White-tabby-cat" | "Colour: White" | "Age: 4YRS" | 3        | "Light Spotted Tabby Cat" | 'NZ$300.00' | 'NZ$900.00' |

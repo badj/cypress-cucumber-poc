@@ -23,7 +23,7 @@
 This repository demonstrates:
 
 - **Cypress Testing Framework**: Utilises [Cypress Studio](https://docs.cypress.io/app/guides/cypress-studio) for test recording - [follow this guide to record test steps with Cypress Studio](https://docs.cypress.io/app/guides/cypress-studio#Step-1---Run-the-spec).
-- **Cucumber BDD**: Implements Behaviour-Driven Development for structured, readable test scenarios.
+- **Cucumber BDD**: Implemented Behaviour-Driven Development for structured, readable test scenarios.
 - **Mochawesome Reporter**: Generates detailed test result reports.
 - **Local Execution**: Run tests locally with multiple browser options.
 - **CI/CD Integration**: Executes tests in a [Docker container](https://www.docker.com/) via [GitHub Actions](https://github.com/badj/cypress-cucumber-poc/actions), triggered on push/pull requests to the main branch and daily scheduled runs.

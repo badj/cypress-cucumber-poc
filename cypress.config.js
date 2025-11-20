@@ -3,6 +3,7 @@ const cypressOnFix = require('cypress-on-fix');
 const createBundler = require('@bahmutov/cypress-esbuild-preprocessor');
 const { addCucumberPreprocessorPlugin } = require('@badeball/cypress-cucumber-preprocessor');
 const { createEsbuildPlugin } = require('@badeball/cypress-cucumber-preprocessor/esbuild');
+const { execSync } = require('child_process');
 
 module.exports = defineConfig({
     reporter: 'cypress-mochawesome-reporter',
@@ -27,6 +28,22 @@ module.exports = defineConfig({
             require('cypress-mochawesome-reporter/plugin')(on);
             await addCucumberPreprocessorPlugin(on, config);
             on('file:preprocessor', createBundler({ plugins: [createEsbuildPlugin(config)] }));
+
+            // Fix video paths after all tests complete
+            on('after:run', async (results) => {
+                console.log('\n📹 Post-processing video paths in report...');
+
+                // Add a small delay to ensure report is fully written
+                await new Promise(resolve => setTimeout(resolve, 2000));
+
+                try {
+                    // Run the HTML-encoded video path fixer
+                    execSync('node scripts/fix-html-encoded-video.js', { stdio: 'inherit' });
+                } catch (error) {
+                    console.error('Failed to fix video paths:', error.message);
+                }
+            });
+
             return config;
         },
         specPattern: 'cypress/e2e/**/*.feature',

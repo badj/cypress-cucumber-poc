@@ -1,10 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 
-/**
+ /***********************************************************
  * Fixes HTML-encoded video paths in the Mochawesome report
  * The video path is embedded as escaped JSON in the HTML
- */
+ ************************************************************/
 
 const reportPath = path.join(__dirname, '../cypress/reports/html/cypress-cucumber-poc-results.html');
 
@@ -91,7 +91,7 @@ function fixHtmlEncodedVideo() {
         if (htmlContent === originalContent) {
             console.log('⚠ No video paths found to fix\n');
 
-            // Debug: Show what we found
+            // Debug: Show video-related strings found
             console.log('Debug info:');
             const anyVideo = htmlContent.match(/videos[^"'\s]{0,100}/g);
             if (anyVideo) {
@@ -102,14 +102,14 @@ function fixHtmlEncodedVideo() {
             return;
         }
 
-        // Write the fixed HTML
+        // Write the fixed HTML to update the report
         fs.writeFileSync(reportPath, htmlContent, 'utf8');
 
         const changeCount = (originalContent.length - htmlContent.length);
         console.log(`✅ Successfully updated report!`);
         console.log(`   Bytes changed: ${Math.abs(changeCount)}`);
 
-        // Verify
+        // Verify the report content after the fix to ensure no nested paths remain
         const verifyContent = fs.readFileSync(reportPath, 'utf8');
         const stillHasBadPath = verifyContent.includes('videos/cypress/e2e/');
 

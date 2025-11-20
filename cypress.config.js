@@ -33,7 +33,7 @@ module.exports = defineConfig({
             on('after:run', async (results) => {
                 console.log('\n📹 Post-processing video paths in report...');
 
-                // Add a small delay to ensure report is fully written
+                // Delay to ensure the report is fully written
                 await new Promise(resolve => setTimeout(resolve, 2000));
 
                 try {
@@ -51,11 +51,12 @@ module.exports = defineConfig({
         screenshotOnRunFailure: true,
         experimentalStudio: true,
         experimentalWebKitSupport: true,
+        // ***************************************************************************
         // Retry enabled globally - to retry all failing tests
         // Disable this and move to individual test or specs to enable retry per
         // test or a spec only. This will retry a failed test (1 retry)  when it fails
         // NOTE: Increase runMode int to increase test retries
-        // *************************************************************************
+        // ***************************************************************************
         retries: {
             "runMode": 1, // Increase to attempt retries for failed tests
             "openMode": 0

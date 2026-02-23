@@ -45,9 +45,9 @@ Feature: Cypress Test POC ➝ Contact and Checkout flow
       | Product           | color           | age         | quantity | cartTotal |
       | "White-tabby-cat" | "Colour: White" | "Age: 4YRS" | 3        | 'NZ$900.00' |
 
-#  TODO: Test disabled temporarily / not used due to cloudflare security check that is triggered on cart and checkout pages since 18 February 2026!
+#  TODO: Test was disabled temporarily / not used in the past due to cloudflare security check that is triggered on cart and checkout pages since 18 February 2026!
 #  TODO: Using test below until issue can be fixed for a test to pass by checking the cloudflare check box to proceed to the cart page.
-#  TODO: Enable this test to run locally - no cloudflare check triggered on local runs
+#  TODO: Keep this test enabled to run locally - no cloudflare check triggered on local runs
 
   Scenario: Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout
     Given I am on the product page for "White-tabby-cat"
@@ -58,9 +58,9 @@ Feature: Cypress Test POC ➝ Contact and Checkout flow
     Then The checkout proceeds to the checkout page
 
 
-#  TODO: New temporary test until issue can be fixed for a test to pass by checking the cloudflare check box to proceed to the cart page.
-#  TODO: Disable this test for local test runs where no cloudflare check triggered on local runs
-#  TODO: ⚠️ If scenario is not disabled for local runs then the Scenarios for the local test runs will due to 403 error codes returned on cart page load
+#  TODO: New temporary test that was created for intermittent cloudflare issue
+#  TODO: Disable this test for local test runs where no cloudflare check should be triggered on local runs
+#  TODO: ⚠️ If scenario is not disabled for local runs then the Scenarios for the local test runs will fail due to 403 error codes returned on cart page load
 
 #  Scenario: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered
 #    Given I am on the product page for "White-tabby-cat"
@@ -83,9 +83,9 @@ Feature: Cypress Test POC ➝ Contact and Checkout flow
       | Product           | color           | age         | quantity | itemName                  | itemPrice | subTotal  |
       | "White-tabby-cat" | "Colour: White" | "Age: 4YRS" | 3        | "Light Spotted Tabby Cat" | 'NZ$300.00' | 'NZ$900.00' |
 
-#  TODO: New temporary test until issue can be fixed for a test to pass by checking the cloudflare check box to proceed to the cart page.
-#  TODO: Disable this test for local test runs where no cloudflare check triggered on local runs
-#  TODO: ⚠️ If scenario is not disabled for local runs then the Scenarios for the local test runs will due to 403 error codes returned on cart page load
+#  TODO: New temporary test that was created for intermittent cloudflare issue
+#  TODO: Disable this test for local test runs where no cloudflare check should be triggered on local runs
+#  TODO: ⚠️ If scenario is not disabled for local runs then the Scenarios for the local test runs will fail due to 403 error codes returned on cart page load
 
 #  Scenario Outline: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered
 #    Given I am on the product page for <Product>

@@ -14,17 +14,23 @@
 - [CI/CD Pipeline](#cicd-pipeline)
 - [Additional notes](#additional-notes)
 - [Gotcha's](#gotchas)
-- [Unresolved issues - Work in progress](#unresolved-issues---work-in-progress)
+- [Unresolved issues - Work in progress and being monitored](#unresolved-issues---work-in-progress-and-being-monitored)
   - [1. Firefox runner fails to capture the video recording](#1-firefox-runner-fails-to-capture-the-video-recording)
-  - [2. Test scenarios, steps disabled and temporary scenarios added to handle Cloudflare security checks triggered on cart and checkout pages:](#2-test-scenarios-steps-disabled-and-temporary-scenarios-added-to-handle-cloudflare-security-checks-triggered-on-cart-and-checkout-pages)
-    - [2.1. Disabled Scenario: Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout](#21-disabled-scenario-add-item-to-cart--continue-to-cart--verify-cart-details--continue-the-checkout)
-    - [2.2. Disabled Scenario Outline: Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout](#22-disabled-scenario-outline-add-item-to-cart--continue-to-cart--verify-cart-details--continue-the-checkout)
-    - [2.3. New / Temporary Scenario: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered](#23-new--temporary-scenario-add-item-to-cart--continue-to-cart--cloudflare-security-check-page-is-triggered)
-    - [2.4. New / Temporary Scenario Outline: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered](#24-new--temporary-scenario-outline-add-item-to-cart--continue-to-cart--cloudflare-security-check-page-is-triggered)
+  - [2. Test scenarios, steps previously disabled and temporary scenarios added to handle Cloudflare security checks triggered on cart and checkout pages:](#2-test-scenarios-steps-previously-disabled-and-temporary-scenarios-added-to-handle-cloudflare-security-checks-triggered-on-cart-and-checkout-pages)
+    - [2.1. Previously disabled Scenario: Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout](#21-previously-disabled-scenario-add-item-to-cart--continue-to-cart--verify-cart-details--continue-the-checkout)
+    - [2.2. Previously disabled Scenario Outline: Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout](#22-previously-disabled-scenario-outline-add-item-to-cart--continue-to-cart--verify-cart-details--continue-the-checkout)
+    - [2.3. Previous temporary Scenario: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered](#23-previous-temporary-scenario-add-item-to-cart--continue-to-cart--cloudflare-security-check-page-is-triggered)
+    - [2.4. Previous temporary Scenario Outline: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered](#24-previous-temporary-scenario-outline-add-item-to-cart--continue-to-cart--cloudflare-security-check-page-is-triggered)
     - [⚠️ If scenarios are not disabled then the Scenarios for the local test runs will fail with the following failures error outputs sample for 2.3 and 2.4](#if-scenarios-are-not-disabled-then-the-scenarios-for-the-local-test-runs-will-fail-with-the-following-failures---error-outputs-samples-for-23-and-24)
 
 ---
 
+
+[2. Test scenarios, steps previously disabled and temporary scenarios added to handle Cloudflare security checks triggered on cart and checkout pages:](#2-test-scenarios-steps-previously-disabled-and-temporary-scenarios-added-to-handle-cloudflare-security-checks-triggered-on-cart-and-checkout-pages)
+[2.1. Previously disabled Scenario: Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout](#21-previously-disabled-scenario-add-item-to-cart--continue-to-cart--verify-cart-details--continue-the-checkout)
+[2.2. Previously disabled Scenario Outline: Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout](#22-previously-disabled-scenario-outline-add-item-to-cart--continue-to-cart--verify-cart-details--continue-the-checkout)
+[2.3. Previous temporary Scenario: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered](#23-previous-temporary-scenario-add-item-to-cart--continue-to-cart--cloudflare-security-check-page-is-triggered)
+[2.4. Previous temporary Scenario Outline: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered](#24-previous-temporary-scenario-outline-add-item-to-cart--continue-to-cart--cloudflare-security-check-page-is-triggered)
 ### Overview
 
 This repository demonstrates:
@@ -252,7 +258,7 @@ After the test run completes:
 
 ---
 
-### Unresolved issues - Work in Progress
+### Unresolved issues - Work in progress and being monitored
 
 #### 1. Firefox runner fails to capture the video recording
 
@@ -272,9 +278,12 @@ at ChildProcess.emit (node:events:518:28)
 at ChildProcess._handle.onexit (node:internal/child_process:293:12)
 ```
 
-#### 2. Test scenarios, steps disabled and temporary scenarios added to handle Cloudflare security checks triggered on cart and checkout pages:
+#### 2. Test scenarios, steps previously disabled and temporary scenarios added to handle Cloudflare security checks triggered on cart and checkout pages:
 
-##### 2.1. Disabled Scenario: Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout
+> Will monitor for failures in the GitHub action runs due to Cloudflare security checks triggered on cart and checkout pages.
+> Issue started on 18 February 2026 but stopped on 23 February 2026.
+
+##### 2.1. Previously disabled Scenario: Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout
 
 - **Status:** Investigating/WIP
 - **Affected Browsers:** ALL
@@ -298,7 +307,7 @@ at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     Then The checkout proceeds to the checkout page
 ```
 
-##### 2.2. Disabled Scenario Outline: Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout
+##### 2.2. Previously disabled Scenario Outline: Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout
 
 - **Status:** Investigating/WIP
 - **Affected Browsers:** ALL
@@ -326,7 +335,7 @@ at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     | "White-tabby-cat" | "Colour: White" | "Age: 4YRS" | 3        | "Light Spotted Tabby Cat" | 'NZ$300.00' | 'NZ$900.00' |
 ```
 
-##### 2.3. New / Temporary Scenario: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered
+##### 2.3. Previous temporary Scenario: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered
 
 - **Status:** Investigating/WIP
 - **Affected Browsers:** ALL
@@ -347,7 +356,7 @@ at ChildProcess._handle.onexit (node:internal/child_process:293:12)
 
 > **⚠️ If scenarios are not disabled then the Scenarios for the local test runs will fail - refer to the expected failures error outputs below 2.4**
 
-##### 2.4. New / Temporary Scenario Outline: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered
+##### 2.4. Previous temporary Scenario Outline: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered
 
 - **Status:** Investigating/WIP
 - **Affected Browsers:** ALL

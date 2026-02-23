@@ -83,6 +83,8 @@ When("I add the item to the cart", () => {
     cy.get(".add-to-cart-button").click();
 });
 
+// TODO: Test step disabled temporarily / not used due to cloudflare security check that is triggered on cart and checkout pages since 18 February 2026!
+// TODO: Using test step below until issue can be fixed for a test to pass by checking the cloudflare check box to proceed to the cart page.
 When("I proceed to the cart", () => {
     cy.intercept('GET', '**/cart').as('viewCart');
     cy.get('.product-form-cart-link-text').click();
@@ -92,6 +94,18 @@ When("I proceed to the cart", () => {
     cy.get('.page-title').should('have.text', 'Cart');
 });
 
+// TODO: New temporary test step until issue can be fixed for a test to pass by checking the cloudflare check box to proceed to the cart page.
+// TODO: ⚠️ If scenario is not disabled for local runs then the implementation will due to a 403 error code returned on cart page load
+When("I proceed to the cart a cloudflare security check page is triggered", () => {
+    cy.intercept('GET', '**/cart').as('viewCart');
+    cy.get('.product-form-cart-link-text').click();
+    cy.wait('@viewCart').its('response.statusCode').should('eq', 403);
+    cy.wait(1000);
+    cy.url().should('contain', '/cart')
+    cy.get('.page-title').should('have.text', 'Cart');
+});
+
+// TODO: Test step disabled temporarily / not used due to cloudflare security check that is triggered on cart and checkout pages since 18 February 2026!
 Then("the cart page should contain the product details: {string}, {string}, {string}, {int}, {string} with sub total {string}", (productName, color, age, quantity) => {
     cy.url().should('contain', '/cart');
     cy.get('.page-title').should('have.text', 'Cart');

@@ -1,10 +1,9 @@
 # Cypress Cucumber POC
 
-> A proof of concept project to showca the implementation of [Cypress](https://www.cypress.io/) as a test framework with [Cucumber BDD](https://cucumber.io/) and [Mochawesome reporter](https://www.npmjs.com/package/cypress-mochawesome-reporter) integration to test the checkout flow for the ["Test Automation - Big Cartel E-commerce Test Store"](https://testautomation.bigcartel.com/).
+> A proof of concept project to showcase the implementation of [Cypress](https://www.cypress.io/) as a test framework with [Cucumber BDD](https://cucumber.io/) and [Mochawesome reporter](https://www.npmjs.com/package/cypress-mochawesome-reporter) integration to test the checkout flow for the ["Test Automation - Big Cartel E-commerce Test Store"](https://testautomation.bigcartel.com/).
 
 ---
 ### Table of contents
-
 
 - [Overview](#overview)
 - [Test Scenarios](#test-scenarios)
@@ -16,6 +15,14 @@
 - [Additional notes](#additional-notes)
 - [Gotcha's](#gotchas)
 - [Unresolved issues - Work in progress](#unresolved-issues---work-in-progress)
+  - [1. Firefox runner fails to capture the video recording](#1-firefox-runner-fails-to-capture-the-video-recording)
+  - [2. Test scenarios, steps disabled and temporary scenarios added to handle Cloudflare security checks triggered on cart and checkout pages:](#2-test-scenarios-steps-disabled-and-temporary-scenarios-added-to-handle-cloudflare-security-checks-triggered-on-cart-and-checkout-pages)
+    - [2.1. Disabled Scenario: Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout](#21-disabled-scenario-add-item-to-cart--continue-to-cart--verify-cart-details--continue-the-checkout)
+    - [2.2. Disabled Scenario Outline: Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout](#22-disabled-scenario-outline-add-item-to-cart--continue-to-cart--verify-cart-details--continue-the-checkout)
+    - [2.3. New / Temporary Scenario: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered](#23-new--temporary-scenario-add-item-to-cart--continue-to-cart--cloudflare-security-check-page-is-triggered)
+    - [2.4. New / Temporary Scenario Outline: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered](#24-new--temporary-scenario-outline-add-item-to-cart--continue-to-cart--cloudflare-security-check-page-is-triggered)
+    - [⚠️ If scenarios are not disabled then the Scenarios for the local test runs will fail with the following failures error outputs sample for 2.3 and 2.4](#if-scenarios-are-not-disabled-then-the-scenarios-for-the-local-test-runs-will-fail-with-the-following-failures---error-outputs-samples-for-23-and-24)
+
 ---
 
 ### Overview
@@ -27,6 +34,8 @@ This repository demonstrates:
 - **Mochawesome Reporter**: Generates detailed test result reports.
 - **Local Execution**: Run tests locally with multiple browser options.
 - **CI/CD Integration**: Executes tests in a [Docker container](https://www.docker.com/) via [GitHub Actions](https://github.com/badj/cypress-cucumber-poc/actions), triggered on push/pull requests to the main branch and daily scheduled runs.
+
+[_⇡ Return to the Table of Contents_](#table-of-contents)
 
 ---
 
@@ -46,14 +55,18 @@ This project includes Cypress feature tests covering the following e-commerce ch
   - Quantities.
   - Item prices and cart totals.
 
+[_⇡ Return to the Table of Contents_](#table-of-contents)
+
 ---
 
 ### Prerequisites
 
-Ensure the following are installed:
+Ensure the following is installed:
 
 1. [Node.js](https://nodejs.org/en/download/) (LTS version recommended)
 2. [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/) (Included with Node.js)
+
+[_⇡ Return to the Table of Contents_](#table-of-contents)
 
 ---
 ### Setup
@@ -70,6 +83,8 @@ Ensure the following are installed:
    npm install
    ```
 
+[_⇡ Return to the Table of Contents_](#table-of-contents)
+
 ---
 
 ### Running Tests
@@ -85,7 +100,7 @@ Ensure the following are installed:
   ```bash
   npx cypress run
   ```
-3. Headed Mode - No exit  - Alternative Browsers: (Electron/Chrome/Firefox/Edge/Webkit)
+3. Headed Mode - No exit - Alternative Browsers: (Electron/Chrome/Firefox/Edge/Webkit)
 - Run tests with the browser open, and the browser remains open when the run completed 
   ```bash
   npx cypress run --headed --browser electron --no-exit
@@ -136,6 +151,9 @@ Ensure the following are installed:
   ```bash
   npx cypress run --headed --browser webkit
   ```
+
+[_⇡ Return to the Table of Contents_](#table-of-contents)
+
 ---
 
 ### Viewing Test Results
@@ -156,6 +174,8 @@ After the test run completes:
 - **Video Recordings:** Available at [cypress/reports/html/videos/](cypress/reports/html/videos/) and [cypress/videos/](cypress/videos/)
 - **Screenshots:** Saved at [cypress/reports/screenshots/](cypress/reports/screenshots/) for test steps configured to capture screenshots.
 
+[_⇡ Return to the Table of Contents_](#table-of-contents)
+
 ---
 
 ### CI/CD Pipeline
@@ -163,13 +183,17 @@ After the test run completes:
 - [![Cypress Tests in Docker](https://github.com/badj/cypress-cucumber-poc/actions/workflows/main.yml/badge.svg)](https://github.com/badj/cypress-cucumber-poc/actions/workflows/main.yml)
   - Tests are executed in a Docker container using GitHub Actions.
   - Triggers on push/pull requests to the main branch and for daily scheduled runs. See the workflow configuration in [.github/workflows/main.yml](.github/workflows/main.yml).
-  
+
+[_⇡ Return to the Table of Contents_](#table-of-contents)
+
 ---
 
 ### Additional Notes
 
 - Ensure all prerequisites are met before running tests.
 - For issues or contributions, refer to the GitHub repository.
+
+[_⇡ Return to the Table of Contents_](#table-of-contents)
 
 ---
 
@@ -224,18 +248,21 @@ After the test run completes:
   npm install
 ```
 
+[_⇡ Return to the Table of Contents_](#table-of-contents)
+
 ---
 
 ### Unresolved issues - Work in Progress
 
-**1. Firefox runner fails to capture video recording**
+#### 1. Firefox runner fails to capture the video recording
+
 - **Status:** Investigating
 - **Affected Browsers:** Firefox
 - **Severity:** Low
 - **Impact:** Video from the test run is not embedded in the test results report due to failed video capture during the Firefox test run.
 - **Additional Details:** 
-  - Test run succeeds, but is unable to generate/process the video recording(s).
-  - Following error printed in console at the end of the test run, during video recording processing: 
+  - Test run succeeds but is unable to generate/process the video recording(s).
+  - The following error is printed in the console at the end of the test run, during video recording processing: 
 ```javascript
 Warning: We failed capturing this video.
 This error will not affect or change the exit code.
@@ -244,6 +271,159 @@ at ChildProcess.<anonymous> (<embedded>:1012:16262)
 at ChildProcess.emit (node:events:518:28)
 at ChildProcess._handle.onexit (node:internal/child_process:293:12)
 ```
+
+#### 2. Test scenarios, steps disabled and temporary scenarios added to handle Cloudflare security checks triggered on cart and checkout pages:
+
+##### 2.1. Disabled Scenario: Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout
+
+- **Status:** Investigating/WIP
+- **Affected Browsers:** ALL
+- **Severity:** Medium
+- **Impact:** Cart and checkout flow pages not tested during GitHub action runs due to Cloudflare security check triggered on checkout payments page load.
+- **Additional Details:** 
+  - Test scenario disabled due to Cloudflare security check triggered on checkout payments page load for CI / Docker / GitHub action runs - issue started on 18 February 2026!
+
+> Scenario disabled due to Cloudflare security check triggered on checkout payments page load for CI / Docker / GitHub action runs - issue started on 18 February 2026!
+> For local runs: 
+> - Enable this test in the feature file to run locally - no cloudflare check triggered on local runs and 
+> - Disable "Scenario: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered" 
+
+```javascript
+  Scenario: Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout
+    Given I am on the product page for "White-tabby-cat"
+    And product "White-tabby-cat" with color "Colour: White" with age "Age: 4YRS" and quantity 3 is added to the cart
+    When I proceed to the cart
+    Then the cart page should contain the product details: "Light Spotted Tabby Cat", "Colour: White", "Age: 4YRS", 3, 'NZ$300.00' with sub total 'NZ$900.00'
+    When I continue to the checkout
+    Then The checkout proceeds to the checkout page
+```
+
+##### 2.2. Disabled Scenario Outline: Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout
+
+- **Status:** Investigating/WIP
+- **Affected Browsers:** ALL
+- **Severity:** Medium
+- **Impact:** Cart and checkout flow pages not tested during GitHub action runs due to Cloudflare security check triggered on checkout payments page load.
+- **Additional Details:**
+    - Test scenario disabled temporarily due to Cloudflare security check triggered on checkout payments page load for CI / Docker / GitHub action runs - issue started on 18 February 2026!
+
+> Scenario disabled due to Cloudflare security check triggered on checkout payments page load for CI / Docker / GitHub action runs - issue started on 18 February 2026!
+> For local runs:
+> - Enable this test in the feature file to run locally - no cloudflare check triggered on local runs and
+> - ⚠️Disable "Scenario Outline: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered"
+
+```javascript
+  Scenario Outline: Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout
+    Given I am on the product page for <Product>
+    And <Product> with <color> with <age> and <quantity> is added to the cart
+    When I proceed to the cart
+    Then the cart page should contain the product details: <itemName>, <color>, <age>, <quantity>, <itemPrice> with sub total <subTotal>
+    And the cart page should contain page elements to continue shopping, provide the sub total and to continue the checkout
+    When I continue to the checkout
+    Then The checkout proceeds to the checkout page
+    Examples:
+    | Product           | color           | age         | quantity | itemName                  | itemPrice | subTotal  |
+    | "White-tabby-cat" | "Colour: White" | "Age: 4YRS" | 3        | "Light Spotted Tabby Cat" | 'NZ$300.00' | 'NZ$900.00' |
+```
+
+##### 2.3. New / Temporary Scenario: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered
+
+- **Status:** Investigating/WIP
+- **Affected Browsers:** ALL
+- **Severity:** Medium
+- **Impact:** Cart and checkout flow pages not tested during GitHub action runs due to Cloudflare security check triggered on checkout payments page load.
+- **Additional Details:**
+    - Test scenario disabled due to Cloudflare security check triggered on checkout payments page load for CI / Docker / GitHub action runs - issue started on 18 February 2026!
+
+> New Scenario created for CI runs until the issue can be fixed for a test to pass by checking the cloudflare check box to proceed to the cart page. 
+> ⚠️Disable this Scenario for local test runs where no cloudflare check triggered on local runs
+
+```javascript
+  Scenario: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered
+    Given I am on the product page for "White-tabby-cat"
+    And product "White-tabby-cat" with color "Colour: White" with age "Age: 4YRS" and quantity 3 is added to the cart
+    When I proceed to the cart a cloudflare security check page is triggered
+```
+
+> **⚠️ If scenarios are not disabled then the Scenarios for the local test runs will fail - refer to the expected failures error outputs below 2.4**
+
+##### 2.4. New / Temporary Scenario Outline: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered
+
+- **Status:** Investigating/WIP
+- **Affected Browsers:** ALL
+- **Severity:** Medium
+- **Impact:** Cart and checkout flow pages not tested during GitHub action runs due to Cloudflare security check triggered on checkout payments page load.
+- **Additional Details:**
+    - Test scenario disabled due to Cloudflare security check triggered on checkout payments page load for CI / Docker / GitHub action runs - issue started on 18 February 2026!
+
+> New Scenario created for CI runs until the issue can be fixed for a test to pass by checking the cloudflare check box to proceed to the cart page.
+> Disable this Scenario for local test runs where no cloudflare check triggered on local runs
+
+```javascript
+  Scenario Outline: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered
+    Given I am on the product page for <Product>
+    And <Product> with <color> with <age> and <quantity> is added to the cart
+    When I proceed to the cart a cloudflare security check page is triggered
+    Examples:
+    | Product           | color           | age         | quantity |
+    | "White-tabby-cat" | "Colour: White" | "Age: 4YRS" | 3        |
+```
+
+##### If scenarios are not disabled then the Scenarios for the local test runs will fail with the following failures - error outputs samples for 2.3 and 2.4
+
+> ⚠️ If scenarios are not disabled then the Scenarios for the local test runs will fail with the following failures error outputs sample for 2.3 and 2.4
+
+```javascript
+  Running:  testautomation.feature                                                        (1 of 1)  
+  Cypress Test POC ➝ Contact and Checkout flow
+  ✓ Submit a contact enquiry ➝ triggers recaptcha (example #1) (6721ms)
+  ✓ Search for an item ➝ view the product (5750ms)
+  ✓ Choose options on the product page ➝ add to the cart
+  ✓ Choose options on the product page ➝ add to the cart (example #1)
+  1) Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered
+  2) Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered (example #1)
+
+  4 passing (1m)
+  2 failing
+
+  1) Cypress Test POC ➝ Contact and Checkout flow
+  Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered:
+
+  Timed out retrying after 4000ms
+  + expected - actual
+  -200
+  +403
+
+  at Context.eval (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:14043:57)
+  at Registry.runStepDefinition (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:10415:48)
+  at Object.fn (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:13369:43)
+  at runStepWithLogGroup (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:12856:29)
+  at Context.eval (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:13365:62)
+  at getRet (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:121066:20)
+  at tryCatcher (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:1777:23)
+  at Promise.attempt.Promise.try (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:4285:29)
+  at Context.thenFn (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:121077:66)
+
+  2) Cypress Test POC ➝ Contact and Checkout flow
+  Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered (example #1):
+
+  Timed out retrying after 4000ms
+  + expected - actual
+  -200
+  +403
+
+  at Context.eval (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:14043:57)
+  at Registry.runStepDefinition (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:10415:48)
+  at Object.fn (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:13369:43)
+  at runStepWithLogGroup (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:12856:29)
+  at Context.eval (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:13365:62)
+  at getRet (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:121066:20)
+  at tryCatcher (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:1777:23)
+  at Promise.attempt.Promise.try (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:4285:29)
+  at Context.thenFn (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:121077:66)
+```
+
+[_⇡ Return to the Table of Contents_](#table-of-contents)
 
 ---
 

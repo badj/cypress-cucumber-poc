@@ -18,74 +18,89 @@ Feature: Cypress Test POC ➝ Contact and Checkout flow
     When I click on the first product in the results
     Then I should be on the product page for "Light Spotted Tabby Cat"
 
-  Scenario: Choose options on the product page ➝ add to the cart
+  Scenario: Choose options on the product page ➝ add to the cart ➝ triggers a cloudflare security check that return a 403 response
     Given I am on the product page for "White-tabby-cat"
     When I select the color "Colour: White"
     And I select the age "Age: 4YRS"
     And I increase the quantity to 3
-    And I add it to the cart
-    Then the selected color should be "Colour: White"
-    And the selected age should be "Age: 4YRS"
-    And the quantity should be 3
-    And the cart total should be 'NZ$900.00'
-    And the cart total items count should be 3
+    Then adding it to the cart triggers a cloudflare security check that return a 403 response
 
-  Scenario Outline: Choose options on the product page ➝ add to the cart
+  Scenario Outline: Choose options on the product page ➝ add to the cart ➝ triggers a cloudflare security check that return a 403 response
     Given I am on the product page for <Product>
-    When I select the color <color>
-    And I select the age <age>
-    And I increase the quantity to <quantity>
-    And I add it to the cart
-    Then the selected color should be <color>
-    And the selected age should be <age>
-    And the quantity should be <quantity>
-    And the cart total should be <cartTotal>
-    And the cart total items count should be <quantity>
+    When <Product> with <color> with <age> and <quantity> is added to the cart with Cloudflare security enabled
+    Then a cloudflare security check is triggered returning a 403 response
     Examples:
-      | Product           | color           | age         | quantity | cartTotal |
-      | "White-tabby-cat" | "Colour: White" | "Age: 4YRS" | 3        | 'NZ$900.00' |
+      | Product           | color           | age         | quantity |
+      | "White-tabby-cat" | "Colour: White" | "Age: 4YRS" | 3        |
 
-#  TODO: Test was disabled temporarily / not used in the past due to cloudflare security check that is triggered on cart and checkout pages since 18 February 2026!
-#  TODO: Using test below until issue can be fixed for a test to pass by checking the cloudflare check box to proceed to the cart page.
-#  TODO: Keep this test enabled to run locally - no cloudflare check triggered on local runs
-
-  Scenario: Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout
+  Scenario: Add item to cart ➝ add to the cart ➝ triggers a cloudflare security check that return a 403 response
     Given I am on the product page for "White-tabby-cat"
-    And product "White-tabby-cat" with color "Colour: White" with age "Age: 4YRS" and quantity 3 is added to the cart
-    When I proceed to the cart
-    Then the cart page should contain the product details: "Light Spotted Tabby Cat", "Colour: White", "Age: 4YRS", 3, 'NZ$300.00' with sub total 'NZ$900.00'
-    When I continue to the checkout
-    Then The checkout proceeds to the checkout page
+    When product "White-tabby-cat" with color "Colour: White" with age "Age: 4YRS" and quantity 3 is added to the cart with Cloudflare security enabled
+    Then a cloudflare security check is triggered returning a 403 response
+
+  Scenario Outline: Add item to cart ➝ triggers a cloudflare security check that return a 403 response
+    Given I am on the product page for <Product>
+    When <Product> with <color> with <age> and <quantity> is added to the cart with Cloudflare security enabled
+    Then a cloudflare security check is triggered returning a 403 response
+    Examples:
+      | Product           | color           | age         | quantity |
+      | "White-tabby-cat" | "Colour: White" | "Age: 4YRS" | 3        |
 
 
-#  TODO: New temporary test that was created for intermittent cloudflare issue
-#  TODO: Disable this test for local test runs where no cloudflare check should be triggered on local runs
-#  TODO: ⚠️ If scenario is not disabled for local runs then the Scenarios for the local test runs will fail due to 403 error codes returned on cart page load
+#  ⚠️ TODO/WIP/Monitoring:
+#   Scenarios disabled due to Cloudflare security check that is triggered on add to cart API call (since 03 March 2026), cart and checkout pages since (18 February 2026)!
+
+#  Scenario: Choose options on the product page ➝ add to the cart
+#    Given I am on the product page for "White-tabby-cat"
+#    When I select the color "Colour: White"
+#    And I select the age "Age: 4YRS"
+#    And I increase the quantity to 3
+#    And I add it to the cart
+#    Then the selected color should be "Colour: White"
+#    And the selected age should be "Age: 4YRS"
+#    And the quantity should be 3
+#    And the cart total should be 'NZ$900.00'
+#    And the cart total items count should be 3
+
+#  Scenario Outline: Choose options on the product page ➝ add to the cart
+#    Given I am on the product page for <Product>
+#    When I select the color <color>
+#    And I select the age <age>
+#    And I increase the quantity to <quantity>
+#    And I add it to the cart
+#    Then the selected color should be <color>
+#    And the selected age should be <age>
+#    And the quantity should be <quantity>
+#    And the cart total should be <cartTotal>
+#    And the cart total items count should be <quantity>
+#    Examples:
+#      | Product           | color           | age         | quantity | cartTotal |
+#      | "White-tabby-cat" | "Colour: White" | "Age: 4YRS" | 3        | 'NZ$900.00' |
+
+#  Scenario: Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout
+#    Given I am on the product page for "White-tabby-cat"
+#    And product "White-tabby-cat" with color "Colour: White" with age "Age: 4YRS" and quantity 3 is added to the cart
+#    When I proceed to the cart
+#    Then the cart page should contain the product details: "Light Spotted Tabby Cat", "Colour: White", "Age: 4YRS", 3, 'NZ$300.00' with sub total 'NZ$900.00'
+#    When I continue to the checkout
+#    Then The checkout proceeds to the checkout page
 
 #  Scenario: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered
 #    Given I am on the product page for "White-tabby-cat"
 #    And product "White-tabby-cat" with color "Colour: White" with age "Age: 4YRS" and quantity 3 is added to the cart
 #    When I proceed to the cart a cloudflare security check page is triggered
 
-#  TODO: Test disabled temporarily / not used due to cloudflare security check that is triggered on cart and checkout pages since 18 February 2026!
-#  TODO: Using test below until issue can be fixed for a test to pass by checking the cloudflare check box to proceed to the cart page.
-#  TODO: Enable this test to run locally - no cloudflare check triggered on local runs
-
-  Scenario Outline: Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout
-    Given I am on the product page for <Product>
-    And <Product> with <color> with <age> and <quantity> is added to the cart
-    When I proceed to the cart
-    Then the cart page should contain the product details: <itemName>, <color>, <age>, <quantity>, <itemPrice> with sub total <subTotal>
-    And the cart page should contain page elements to continue shopping, provide the sub total and to continue the checkout
-    When I continue to the checkout
-    Then The checkout proceeds to the checkout page
-    Examples:
-      | Product           | color           | age         | quantity | itemName                  | itemPrice | subTotal  |
-      | "White-tabby-cat" | "Colour: White" | "Age: 4YRS" | 3        | "Light Spotted Tabby Cat" | 'NZ$300.00' | 'NZ$900.00' |
-
-#  TODO: New temporary test that was created for intermittent cloudflare issue
-#  TODO: Disable this test for local test runs where no cloudflare check should be triggered on local runs
-#  TODO: ⚠️ If scenario is not disabled for local runs then the Scenarios for the local test runs will fail due to 403 error codes returned on cart page load
+#  Scenario Outline: Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout
+#    Given I am on the product page for <Product>
+#    And <Product> with <color> with <age> and <quantity> is added to the cart
+#    When I proceed to the cart
+#    Then the cart page should contain the product details: <itemName>, <color>, <age>, <quantity>, <itemPrice> with sub total <subTotal>
+#    And the cart page should contain page elements to continue shopping, provide the sub total and to continue the checkout
+#    When I continue to the checkout
+#    Then The checkout proceeds to the checkout page
+#    Examples:
+#      | Product           | color           | age         | quantity | itemName                  | itemPrice | subTotal  |
+#      | "White-tabby-cat" | "Colour: White" | "Age: 4YRS" | 3        | "Light Spotted Tabby Cat" | 'NZ$300.00' | 'NZ$900.00' |
 
 #  Scenario Outline: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered
 #    Given I am on the product page for <Product>

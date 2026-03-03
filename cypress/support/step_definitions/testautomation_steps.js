@@ -31,10 +31,19 @@ When("I click on the first product in the results", () => {
     cy.wait(300)
 });
 
+// TODO: Tests steps failing to add items to cart - Cloudflare security check causing failure - added new test step to check for 403 response until a solution is found or it resolves itself (latter not likely)!
+// Test step started to fail on 3 March 2026!
 When("I add it to the cart", () => {
     cy.intercept('POST', '**/cart.js').as('addToCart');
     cy.get('.button-add-text').click();
     cy.wait('@addToCart').its('response.statusCode').should('eq', 200);
+});
+
+// New test step to handle cloudflare security check that is triggered on add to cart since 3 March 2026!
+When("adding it to the cart triggers a cloudflare security check that return a 403 response", () => {
+    cy.intercept('POST', '**/cart.js').as('addToCart');
+    cy.get('.button-add-text').click();
+    cy.wait('@addToCart').its('response.statusCode').should('eq', 403);
 });
 
 Then("I should be on the product page for {string}", (productName) => {
@@ -83,8 +92,7 @@ When("I add the item to the cart", () => {
     cy.get(".add-to-cart-button").click();
 });
 
-// TODO: Test step was disabled temporarily / not used due to cloudflare security check that is triggered on cart and checkout pages since 18 February 2026!
-// TODO: Test step below was added to deal with the cloudflare check box to proceed to the cart page.
+// Test step disabled due to cloudflare security check that is triggered on cart and checkout pages since 18 February 2026!
 When("I proceed to the cart", () => {
     cy.intercept('GET', '**/cart').as('viewCart');
     cy.get('.product-form-cart-link-text').click();
@@ -94,8 +102,7 @@ When("I proceed to the cart", () => {
     cy.get('.page-title').should('have.text', 'Cart');
 });
 
-// TODO: New temporary test step until issue can be fixed for a test to pass by checking the cloudflare check box to proceed to the cart page.
-// TODO: ⚠️ If scenario is not disabled for local runs then the implementation will fail due to a 403 error code returned on cart page load
+// Test step disabled due to cloudflare security check that is triggered on cart and checkout pages since 18 February 2026!
 When("I proceed to the cart a cloudflare security check page is triggered", () => {
     cy.intercept('GET', '**/cart').as('viewCart');
     cy.get('.product-form-cart-link-text').click();
@@ -105,7 +112,7 @@ When("I proceed to the cart a cloudflare security check page is triggered", () =
     cy.get('.page-title').should('have.text', 'Cart');
 });
 
-// TODO: Test step were disabled temporarily / not used due to cloudflare security check that is triggered on cart and checkout pages since 18 February 2026!
+// Test step disabled due to cloudflare security check that is triggered on cart and checkout pages since 18 February 2026!
 Then("the cart page should contain the product details: {string}, {string}, {string}, {int}, {string} with sub total {string}", (productName, color, age, quantity) => {
     cy.url().should('contain', '/cart');
     cy.get('.page-title').should('have.text', 'Cart');
@@ -148,6 +155,36 @@ When("product {string} with color {string} with age {string} and quantity {int} 
     cy.screenshot();
 });
 
+// New test step to handle cloudflare security check that is triggered on add to cart since 3 March 2026!
+When("product {string} with color {string} with age {string} and quantity {int} is added to the cart with Cloudflare security enabled", (productName, color, age, quantity) => {
+    cy.get('#option_group_5888110').select('30861526');
+    cy.wait(500);
+    cy.get('#option_group_5888113').select('30861541');
+    cy.wait(500);
+    cy.get('#quantity').clear('3');
+    cy.get('#quantity').type('3');
+    cy.wait(500);
+});
+
+// New test step to handle cloudflare security check that is triggered on add to cart since 3 March 2026!
+When("{string} with {string} with {string} and {int} is added to the cart with Cloudflare security enabled", (productName, color, age, quantity) => {
+    cy.get('#option_group_5888110').select('30861526');
+    cy.wait(500);
+    cy.get('#option_group_5888113').select('30861541');
+    cy.wait(500);
+    cy.get('#quantity').clear('3');
+    cy.get('#quantity').type('3');
+    cy.wait(500);
+});
+
+// New test step to handle cloudflare security check that is triggered on add to cart since 3 March 2026!
+When("a cloudflare security check is triggered returning a 403 response", (productName, color, age, quantity) => {
+    cy.intercept('POST', '**/cart.js').as('addToCart');
+    cy.get('.button-add-text').click();
+    cy.wait('@addToCart').its('response.statusCode').should('eq', 403);
+    cy.screenshot();
+});
+
 When("{string} with {string} with {string} and {int} is added to the cart", (productName, color, age, quantity) => {
     cy.get('#option_group_5888110').select('30861526');
     cy.wait(500);
@@ -171,6 +208,7 @@ When("I continue to the checkout", () => {
     cy.get('.cart-footer > .checkout-button').click();
 });
 
+// New test step to handle cloudflare security check that is triggered on checkout page since 18 February 2026!
 Then("The checkout proceeds to the checkout page", () => {
     // TODO: Updated URL checker to a simple check (KISS!) - Disabled verbose checks due to provider that may change checkout URL in the future again!
     // cy.url().should('contain', '/checkout/')

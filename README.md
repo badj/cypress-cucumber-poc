@@ -1,6 +1,6 @@
 # Cypress Cucumber POC
 
-> A proof of concept project to showcase the implementation of [Cypress](https://www.cypress.io/) as a test framework with [Cucumber BDD](https://cucumber.io/) and [Mochawesome reporter](https://www.npmjs.com/package/cypress-mochawesome-reporter) integration to test the checkout flow for the ["Test Automation - Big Cartel E-commerce Test Store"](https://testautomation.bigcartel.com/).
+> A proof-of-concept project to showcase the implementation of [Cypress](https://www.cypress.io/) as a test framework with [Cucumber BDD](https://cucumber.io/) and [Mochawesome reporter](https://www.npmjs.com/package/cypress-mochawesome-reporter) integration to test the checkout flow for the ["Test Automation - Big Cartel E-commerce Test Store"](https://testautomation.bigcartel.com/).
 
 ---
 ### Table of contents
@@ -16,21 +16,12 @@
 - [Gotcha's](#gotchas)
 - [Unresolved issues - Work in progress and being monitored](#unresolved-issues---work-in-progress-and-being-monitored)
   - [1. Firefox runner fails to capture the video recording](#1-firefox-runner-fails-to-capture-the-video-recording)
-  - [2. Test scenarios, steps previously disabled and temporary scenarios added to handle Cloudflare security checks triggered on cart and checkout pages:](#2-test-scenarios-steps-previously-disabled-and-temporary-scenarios-added-to-handle-cloudflare-security-checks-triggered-on-cart-and-checkout-pages)
-    - [2.1. Previously disabled Scenario: Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout](#21-previously-disabled-scenario-add-item-to-cart--continue-to-cart--verify-cart-details--continue-the-checkout)
-    - [2.2. Previously disabled Scenario Outline: Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout](#22-previously-disabled-scenario-outline-add-item-to-cart--continue-to-cart--verify-cart-details--continue-the-checkout)
-    - [2.3. Previous temporary Scenario: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered](#23-previous-temporary-scenario-add-item-to-cart--continue-to-cart--cloudflare-security-check-page-is-triggered)
-    - [2.4. Previous temporary Scenario Outline: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered](#24-previous-temporary-scenario-outline-add-item-to-cart--continue-to-cart--cloudflare-security-check-page-is-triggered)
-    - [⚠️ If scenarios are not disabled then the Scenarios for the local test runs will fail with the following failures error outputs sample for 2.3 and 2.4](#if-scenarios-are-not-disabled-then-the-scenarios-for-the-local-test-runs-will-fail-with-the-following-failures---error-outputs-samples-for-23-and-24)
+  - [2. Test scenarios, steps previously disabled and temporary scenarios added to handle Cloudflare security checks triggered on cart and checkout pages:](#2-test-scenario-steps-disabled-and-temporary-steps-added-to-handle-cloudflare-security-checks-triggered-on-add-to-cart-cart-page-and-checkout-page)
+    - [2.1. New Scenarios created when a product is added to cart](#21-new-scenarios-created-when-a-product-is-added-to-cart)
+    - [2.2. Previously working scenarios disabled where a product is added to cart ➝ continuing to cart ➝ verifying cart details ➝ and continuing to the checkout](#22-previously-working-scenarios-disabled-where-a-product-is-added-to-cart--continuing-to-cart--verifying-cart-details--and-continuing-to-the-checkout)
 
 ---
 
-
-[2. Test scenarios, steps previously disabled and temporary scenarios added to handle Cloudflare security checks triggered on cart and checkout pages:](#2-test-scenarios-steps-previously-disabled-and-temporary-scenarios-added-to-handle-cloudflare-security-checks-triggered-on-cart-and-checkout-pages)
-[2.1. Previously disabled Scenario: Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout](#21-previously-disabled-scenario-add-item-to-cart--continue-to-cart--verify-cart-details--continue-the-checkout)
-[2.2. Previously disabled Scenario Outline: Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout](#22-previously-disabled-scenario-outline-add-item-to-cart--continue-to-cart--verify-cart-details--continue-the-checkout)
-[2.3. Previous temporary Scenario: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered](#23-previous-temporary-scenario-add-item-to-cart--continue-to-cart--cloudflare-security-check-page-is-triggered)
-[2.4. Previous temporary Scenario Outline: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered](#24-previous-temporary-scenario-outline-add-item-to-cart--continue-to-cart--cloudflare-security-check-page-is-triggered)
 ### Overview
 
 This repository demonstrates:
@@ -262,6 +253,9 @@ After the test run completes:
 
 #### 1. Firefox runner fails to capture the video recording
 
+<details>
+  <summary>Details</summary>
+
 - **Status:** Investigating
 - **Affected Browsers:** Firefox
 - **Severity:** Low
@@ -269,6 +263,7 @@ After the test run completes:
 - **Additional Details:** 
   - Test run succeeds but is unable to generate/process the video recording(s).
   - The following error is printed in the console at the end of the test run, during video recording processing: 
+
 ```javascript
 Warning: We failed capturing this video.
 This error will not affect or change the exit code.
@@ -278,50 +273,127 @@ at ChildProcess.emit (node:events:518:28)
 at ChildProcess._handle.onexit (node:internal/child_process:293:12)
 ```
 
-#### 2. Test scenarios, steps previously disabled and temporary scenarios added to handle Cloudflare security checks triggered on cart and checkout pages:
+</details>
 
-> Will monitor for failures in the GitHub action runs due to Cloudflare security checks triggered on cart and checkout pages.
-> Issue started on 18 February 2026 but stopped on 23 February 2026.
+#### 2. Test scenario steps disabled and temporary steps added to handle Cloudflare security checks triggered on add to cart, cart page and checkout page:
 
-##### 2.1. Previously disabled Scenario: Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout
+> - Will monitor the Cloudflare security checks that are triggered on the "add to cart" api call, cart page and checkout page loads.
+> - Issue started on **18 February 2026**.
+>   - Work around test steps were created that didn't verify cart page and checkout pages thoroughly.
+>   - Unfortunately, the issues regressed further impacting the "add to cart" API calls from **3 March 2026**.
+>   - Test journeys are now disabled for the affected pages/flows.
+
+##### 2.1. New Scenarios created when a product is added to cart
+
+<details>
+  <summary>Details</summary>
 
 - **Status:** Investigating/WIP
 - **Affected Browsers:** ALL
 - **Severity:** Medium
-- **Impact:** Cart and checkout flow pages not tested during GitHub action runs due to Cloudflare security check triggered on checkout payments page load.
-- **Additional Details:** 
-  - Test scenario disabled due to Cloudflare security check triggered on checkout payments page load for CI / Docker / GitHub action runs - issue started on 18 February 2026!
+- **Impact:** Adding to Cart, viewing cart and continuing the checkout flow pages are triggering Cloudflare security check on api request level and page loads / redirects.
+- **Additional Details:**
+    - New test steps created to handle Cloudflare security checks triggered when adding to Cart
 
-> Scenario disabled due to Cloudflare security check triggered on checkout payments page load for CI / Docker / GitHub action runs - issue started on 18 February 2026!
-> For local runs: 
-> - Enable this test in the feature file to run locally - no cloudflare check triggered on local runs and 
-> - Disable "Scenario: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered" 
+> **Scenarios updated with new steps due to Cloudflare security check triggered:**
+> - ⚠️ Previously working steps disabled — issue started on **18 February 2026** and regressed to affect the add to cart API call on **3 March 2026**.
+> - Tests are now checking for a 403 error response when adding to the cart for the "add to cart" API request/call.
+> - Updated scenarios with new steps that are sampled below.
 
 ```javascript
-  Scenario: Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout
+  Scenario: Choose options on the product page ➝ add to the cart ➝ triggers a cloudflare security check that return a 403 response
+    Given I am on the product page for "White-tabby-cat"
+    When I select the color "Colour: White"
+    And I select the age "Age: 4YRS"
+    And I increase the quantity to 3
+    Then adding it to the cart triggers a cloudflare security check that return a 403 response
+
+  Scenario Outline: Choose options on the product page ➝ add to the cart ➝ triggers a cloudflare security check that return a 403 response
+    Given I am on the product page for <Product>
+    When <Product> with <color> with <age> and <quantity> is added to the cart with Cloudflare security enabled
+    Then a cloudflare security check is triggered returning a 403 response
+    Examples:
+    | Product           | color           | age         | quantity |
+    | "White-tabby-cat" | "Colour: White" | "Age: 4YRS" | 3        |
+
+  Scenario: Add item to cart ➝ add to the cart ➝ triggers a cloudflare security check that return a 403 response
+    Given I am on the product page for "White-tabby-cat"
+    When product "White-tabby-cat" with color "Colour: White" with age "Age: 4YRS" and quantity 3 is added to the cart with Cloudflare security enabled
+    Then a cloudflare security check is triggered returning a 403 response
+
+  Scenario Outline: Add item to cart ➝ triggers a cloudflare security check that return a 403 response
+    Given I am on the product page for <Product>
+    When <Product> with <color> with <age> and <quantity> is added to the cart with Cloudflare security enabled
+    Then a cloudflare security check is triggered returning a 403 response
+    Examples:
+    | Product           | color           | age         | quantity |
+    | "White-tabby-cat" | "Colour: White" | "Age: 4YRS" | 3        |
+```
+
+**Cloudflare security check sample during "add to cart" API call that returns a 403 response:**
+
+![add-to-cart-CF-403-response-cypress.jpeg](images/add-to-cart-CF-403-response-cypress.jpeg)
+</details>
+
+##### 2.2. Previously working scenarios disabled where a product is added to cart ➝ continuing to cart ➝ verifying cart details ➝ and continuing to the checkout
+
+<details>
+  <summary>Details</summary>
+
+- **Status:** Investigating/WIP
+- **Affected Browsers:** ALL
+- **Severity:** Medium
+- **Impact:** Adding to Cart, viewing cart and continuing the checkout flow pages are triggering Cloudflare security check on api request level and page loads / redirects.
+- **Additional Details:**
+    - New test steps created to handle Cloudflare security checks triggered when adding to Cart
+
+> **Scenarios and steps disabled that are failing due to Cloudflare security checks triggered:**
+> - Previously working steps disabled — issue started on **18 February 2026** and regressed affecting "add to cart" API call on **3 March 2026**.
+> - ⚠️ Disabled all failing scenarios 
+> - New scenarios and steps were created _(as noted above)_.
+> - Disabled scenarios are sampled below.
+
+```javascript
+  Scenario: Choose options on the product page ➝ add to the cart
+    Given I am on the product page for "White-tabby-cat"
+    When I select the color "Colour: White"
+    And I select the age "Age: 4YRS"
+    And I increase the quantity to 3
+    And I add it to the cart
+    Then the selected color should be "Colour: White"
+    And the selected age should be "Age: 4YRS"
+    And the quantity should be 3
+    And the cart total should be 'NZ$900.00'
+    And the cart total items count should be 3
+
+  Scenario Outline: Choose options on the product page ➝ add to the cart
+    Given I am on the product page for <Product>
+    When I select the color <color>
+    And I select the age <age>
+    And I increase the quantity to <quantity>
+    And I add it to the cart
+    Then the selected color should be <color>
+    And the selected age should be <age>
+    And the quantity should be <quantity>
+    And the cart total should be <cartTotal>
+    And the cart total items count should be <quantity>
+    Examples:
+      | Product           | color           | age         | quantity | cartTotal   |
+      | "White-tabby-cat" | "Colour: White" | "Age: 4YRS" | 3        | 'NZ$900.00' |
+
+  Scenario: Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout 
     Given I am on the product page for "White-tabby-cat"
     And product "White-tabby-cat" with color "Colour: White" with age "Age: 4YRS" and quantity 3 is added to the cart
     When I proceed to the cart
     Then the cart page should contain the product details: "Light Spotted Tabby Cat", "Colour: White", "Age: 4YRS", 3, 'NZ$300.00' with sub total 'NZ$900.00'
     When I continue to the checkout
     Then The checkout proceeds to the checkout page
-```
 
-##### 2.2. Previously disabled Scenario Outline: Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout
+  Scenario: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered
+    Given I am on the product page for "White-tabby-cat"
+    And product "White-tabby-cat" with color "Colour: White" with age "Age: 4YRS" and quantity 3 is added to the cart
+    When I proceed to the cart a cloudflare security check page is triggered
 
-- **Status:** Investigating/WIP
-- **Affected Browsers:** ALL
-- **Severity:** Medium
-- **Impact:** Cart and checkout flow pages not tested during GitHub action runs due to Cloudflare security check triggered on checkout payments page load.
-- **Additional Details:**
-    - Test scenario disabled temporarily due to Cloudflare security check triggered on checkout payments page load for CI / Docker / GitHub action runs - issue started on 18 February 2026!
-
-> Scenario disabled due to Cloudflare security check triggered on checkout payments page load for CI / Docker / GitHub action runs - issue started on 18 February 2026!
-> For local runs:
-> - Enable this test in the feature file to run locally - no cloudflare check triggered on local runs and
-> - ⚠️Disable "Scenario Outline: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered"
-
-```javascript
   Scenario Outline: Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout
     Given I am on the product page for <Product>
     And <Product> with <color> with <age> and <quantity> is added to the cart
@@ -331,106 +403,112 @@ at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     When I continue to the checkout
     Then The checkout proceeds to the checkout page
     Examples:
-    | Product           | color           | age         | quantity | itemName                  | itemPrice | subTotal  |
-    | "White-tabby-cat" | "Colour: White" | "Age: 4YRS" | 3        | "Light Spotted Tabby Cat" | 'NZ$300.00' | 'NZ$900.00' |
-```
+      | Product           | color           | age         | quantity | itemName                  | itemPrice   | subTotal    |
+      | "White-tabby-cat" | "Colour: White" | "Age: 4YRS" | 3        | "Light Spotted Tabby Cat" | 'NZ$300.00' | 'NZ$900.00' |
 
-##### 2.3. Previous temporary Scenario: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered
-
-- **Status:** Investigating/WIP
-- **Affected Browsers:** ALL
-- **Severity:** Medium
-- **Impact:** Cart and checkout flow pages not tested during GitHub action runs due to Cloudflare security check triggered on checkout payments page load.
-- **Additional Details:**
-    - Test scenario disabled due to Cloudflare security check triggered on checkout payments page load for CI / Docker / GitHub action runs - issue started on 18 February 2026!
-
-> New Scenario created for CI runs until the issue can be fixed for a test to pass by checking the cloudflare check box to proceed to the cart page. 
-> ⚠️Disable this Scenario for local test runs where no cloudflare check triggered on local runs
-
-```javascript
-  Scenario: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered
-    Given I am on the product page for "White-tabby-cat"
-    And product "White-tabby-cat" with color "Colour: White" with age "Age: 4YRS" and quantity 3 is added to the cart
-    When I proceed to the cart a cloudflare security check page is triggered
-```
-
-> **⚠️ If scenarios are not disabled then the Scenarios for the local test runs will fail - refer to the expected failures error outputs below 2.4**
-
-##### 2.4. Previous temporary Scenario Outline: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered
-
-- **Status:** Investigating/WIP
-- **Affected Browsers:** ALL
-- **Severity:** Medium
-- **Impact:** Cart and checkout flow pages not tested during GitHub action runs due to Cloudflare security check triggered on checkout payments page load.
-- **Additional Details:**
-    - Test scenario disabled due to Cloudflare security check triggered on checkout payments page load for CI / Docker / GitHub action runs - issue started on 18 February 2026!
-
-> New Scenario created for CI runs until the issue can be fixed for a test to pass by checking the cloudflare check box to proceed to the cart page.
-> Disable this Scenario for local test runs where no cloudflare check triggered on local runs
-
-```javascript
   Scenario Outline: Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered
     Given I am on the product page for <Product>
     And <Product> with <color> with <age> and <quantity> is added to the cart
     When I proceed to the cart a cloudflare security check page is triggered
     Examples:
-    | Product           | color           | age         | quantity |
-    | "White-tabby-cat" | "Colour: White" | "Age: 4YRS" | 3        |
+      | Product           | color           | age         | quantity |
+      | "White-tabby-cat" | "Colour: White" | "Age: 4YRS" | 3        |
 ```
 
-##### If scenarios are not disabled then the Scenarios for the local test runs will fail with the following failures - error outputs samples for 2.3 and 2.4
-
-> ⚠️ If scenarios are not disabled then the Scenarios for the local test runs will fail with the following failures error outputs sample for 2.3 and 2.4
+**Test runner log output of test failures as a result of the "add to cart" API call that returns a 403 response when the Cloudflare security check is triggered:**
 
 ```javascript
-  Running:  testautomation.feature                                                        (1 of 1)  
-  Cypress Test POC ➝ Contact and Checkout flow
-  ✓ Submit a contact enquiry ➝ triggers recaptcha (example #1) (6721ms)
-  ✓ Search for an item ➝ view the product (5750ms)
-  ✓ Choose options on the product page ➝ add to the cart
-  ✓ Choose options on the product page ➝ add to the cart (example #1)
-  1) Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered
-  2) Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered (example #1)
+Running:  testautomation.feature                                                          (1 of 1)
 
-  4 passing (1m)
-  2 failing
+Cypress Test POC ➝ Contact and Checkout flow
+2026-03-03 13:51:10.822 Cypress[92806:8464345] NSSpellServer dataFromGeneratingCandidatesForSelectedRange timed out, index is 0
+✓ Submit a contact enquiry ➝ triggers recaptcha (example #1) (22613ms)
+✓ Search for an item ➝ view the product (13227ms)
+1) Choose options on the product page ➝ add to the cart
+2) Choose options on the product page ➝ add to the cart (example #1)
+3) Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout
+4) Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout (example #1)
 
-  1) Cypress Test POC ➝ Contact and Checkout flow
-  Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered:
+2 passing (2m)
+4 failing
 
-  Timed out retrying after 4000ms
-  + expected - actual
-  -200
-  +403
+1) Cypress Test POC ➝ Contact and Checkout flow
+   Choose options on the product page ➝ add to the cart:
 
-  at Context.eval (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:14043:57)
-  at Registry.runStepDefinition (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:10415:48)
-  at Object.fn (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:13369:43)
-  at runStepWithLogGroup (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:12856:29)
-  at Context.eval (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:13365:62)
-  at getRet (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:121066:20)
-  at tryCatcher (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:1777:23)
-  at Promise.attempt.Promise.try (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:4285:29)
-  at Context.thenFn (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:121077:66)
+   Timed out retrying after 4000ms
+    + expected - actual
 
-  2) Cypress Test POC ➝ Contact and Checkout flow
-  Add item to cart ➝ continue to cart ➝ cloudflare security check page is triggered (example #1):
+   -403
+   +200
 
-  Timed out retrying after 4000ms
-  + expected - actual
-  -200
-  +403
+   at Context.eval (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:13994:58)
+   at Registry.runStepDefinition (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:10415:48)
+   at Object.fn (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:13369:43)
+   at runStepWithLogGroup (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:12856:29)
+   at Context.eval (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:13365:62)
+   at getRet (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:121066:20)
+   at tryCatcher (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:1777:23)
+   at Promise.attempt.Promise.try (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:4285:29)
+   at Context.thenFn (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:121077:66)
 
-  at Context.eval (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:14043:57)
-  at Registry.runStepDefinition (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:10415:48)
-  at Object.fn (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:13369:43)
-  at runStepWithLogGroup (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:12856:29)
-  at Context.eval (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:13365:62)
-  at getRet (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:121066:20)
-  at tryCatcher (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:1777:23)
-  at Promise.attempt.Promise.try (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:4285:29)
-  at Context.thenFn (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:121077:66)
+2) Cypress Test POC ➝ Contact and Checkout flow
+   Choose options on the product page ➝ add to the cart (example #1):
+
+   Timed out retrying after 4000ms
+    + expected - actual
+
+   -403
+   +200
+
+   at Context.eval (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:13994:58)
+   at Registry.runStepDefinition (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:10415:48)
+   at Object.fn (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:13369:43)
+   at runStepWithLogGroup (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:12856:29)
+   at Context.eval (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:13365:62)
+   at getRet (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:121066:20)
+   at tryCatcher (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:1777:23)
+   at Promise.attempt.Promise.try (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:4285:29)
+   at Context.thenFn (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:121077:66)
+
+3) Cypress Test POC ➝ Contact and Checkout flow
+   Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout:
+
+   Timed out retrying after 4000ms
+    + expected - actual
+
+   -403
+   +200
+
+   at Context.eval (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:14080:58)
+   at Registry.runStepDefinition (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:10415:48)
+   at Object.fn (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:13369:43)
+   at runStepWithLogGroup (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:12856:29)
+   at Context.eval (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:13365:62)
+   at getRet (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:121066:20)
+   at tryCatcher (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:1777:23)
+   at Promise.attempt.Promise.try (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:4285:29)
+   at Context.thenFn (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:121077:66)
+
+4) Cypress Test POC ➝ Contact and Checkout flow
+   Add item to cart ➝ continue to cart ➝ verify cart details ➝ continue the checkout (example #1):
+
+   Timed out retrying after 4000ms
+    + expected - actual
+
+   -403
+   +200
+
+   at Context.eval (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:14098:58)
+   at Registry.runStepDefinition (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:10415:48)
+   at Object.fn (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:13369:43)
+   at runStepWithLogGroup (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:12856:29)
+   at Context.eval (https://testautomation.bigcartel.com/__cypress/tests?p=cypress/e2e/features/testautomation.feature:13365:62)
+   at getRet (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:121066:20)
+   at tryCatcher (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:1777:23)
+   at Promise.attempt.Promise.try (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:4285:29)
+   at Context.thenFn (https://testautomation.bigcartel.com/__cypress/runner/cypress_runner.js:121077:66)
 ```
+</details>
 
 [_⇡ Return to the Table of Contents_](#table-of-contents)
 

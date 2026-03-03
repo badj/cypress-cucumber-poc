@@ -272,8 +272,9 @@ at ChildProcess.<anonymous> (<embedded>:1012:16262)
 at ChildProcess.emit (node:events:518:28)
 at ChildProcess._handle.onexit (node:internal/child_process:293:12)
 ```
-
 </details>
+
+---
 
 #### 2. Test scenario steps disabled and temporary steps added to handle Cloudflare security checks triggered on add to cart, cart page and checkout page:
 
@@ -334,6 +335,8 @@ at ChildProcess._handle.onexit (node:internal/child_process:293:12)
 
 ![add-to-cart-CF-403-response-cypress.jpeg](images/add-to-cart-CF-403-response-cypress.jpeg)
 </details>
+
+---
 
 ##### 2.2. Previously working scenarios disabled where a product is added to cart ➝ continuing to cart ➝ verifying cart details ➝ and continuing to the checkout
 

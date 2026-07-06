@@ -26,7 +26,7 @@
 
 This repository demonstrates:
 
-- **Cypress Testing Framework**: Utilises [Cypress Studio](https://docs.cypress.io/app/guides/cypress-studio) for test recording - [follow this guide to record test steps with Cypress Studio](https://docs.cypress.io/app/guides/cypress-studio#Step-1---Run-the-spec).
+- **The Cypress Testing Framework**: Utilises [Cypress Studio](https://docs.cypress.io/app/guides/cypress-studio) for test recording - [follow this guide to record test steps with Cypress Studio](https://docs.cypress.io/app/guides/cypress-studio#Step-1---Run-the-spec).
 - **Cucumber BDD**: Implemented Behaviour-Driven Development for structured, readable test scenarios.
 - **Mochawesome Reporter**: Generates detailed test result reports.
 - **Local Execution**: Run tests locally with multiple browser options.

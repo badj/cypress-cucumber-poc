@@ -24,7 +24,7 @@ jobs:
           -w /e2e \
           -e CYPRESS_baseUrl=https://testautomation.bigcartel.com \
           --entrypoint /bin/sh \
-          cypress/included:13.3.2 \
+          cypress/included:15.9.0 \
           -c "npm install && npx cypress run"
 
       - name: Upload Cypress test results

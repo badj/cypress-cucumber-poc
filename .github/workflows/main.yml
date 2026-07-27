@@ -9,6 +9,9 @@ on:
     - cron: '0 17 * * *'  # 5am NZT (UTC+12)
   workflow_dispatch:  # Allows manual trigger
 
+permissions:
+  contents: read
+
 jobs:
   cypress-run:
     runs-on: ubuntu-latest

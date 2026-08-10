@@ -5,8 +5,8 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
-  schedule:
-    - cron: '0 17 * * *'  # 5am NZT (UTC+12)
+#  schedule:
+#    - cron: '0 17 * * *'  # 5am NZT (UTC+12)
   workflow_dispatch:  # Allows manual trigger
 
 permissions:
